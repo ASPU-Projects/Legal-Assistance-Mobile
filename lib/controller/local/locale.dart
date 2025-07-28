@@ -17,6 +17,8 @@ class MyLocale implements Translations {
       "11": "تسجيل الدخول",
       "12": "البريد الإلكتروني",
       "13": "كلمة المرور",
+      "14": "الدردشة",
+      "15": "المجيب الألي",
     },
     "en": {
       "1": "Home Page",
@@ -32,6 +34,8 @@ class MyLocale implements Translations {
       "11": "Sign In",
       "12": "Email",
       "13": "Password",
+      "14": "Chat",
+      "15": "Chatbot",
     },
   };
 }
