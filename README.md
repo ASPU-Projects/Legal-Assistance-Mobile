@@ -51,12 +51,12 @@ This app allows users to sign up, log in, search for lawyers, submit legal issue
 - Flutter SDK (3.0 or later)
 - Dart SDK
 - Android Studio / Xcode / VS Code
-- Connection to the running backend (see: [Legal Assistance Web Repo](https://github.com/osama806/Legal-Assistance))
+- Connection to the running backend (see: [Legal Assistance Web Repo](https://github.com/ASPU-Projects/Legal-Assistance.git))
 
 ### Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/legal_assistance_flutter.git
-cd legal_assistance_flutter
+git clone https://github.com/ASPU-Projects/Legal-Assistance-Mobile.git
+cd Legal-Assistance-Mobile
 flutter pub get
 flutter run
