@@ -1,16 +1,62 @@
-# legal_assistance_mobile
+# 📱 Legal Assistance – Flutter Mobile App
 
-A new Flutter project.
+The **Legal Assistance Flutter App** is a cross-platform mobile application built using Flutter and Dart, designed to provide seamless interaction between clients and legal professionals. It acts as the mobile frontend of the Legal Assistance system, which includes a powerful RESTful PHP & MySQL backend.
 
-## Getting Started
+This app allows users to sign up, log in, search for lawyers, submit legal issues, and track case progress — all from their mobile devices. The app also integrates with a **recommendation system** to suggest top-rated lawyers and offers a **real-time secure chat** system for client-lawyer communication.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 📋 Table of Contents
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Screenshots](#screenshots)
+- [Dependencies](#dependencies)
+- [Folder Structure](#folder-structure)
+- [API Integration](#api-integration)
+- [License](#license)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ✨ Features
+
+- **User Authentication**
+  - Register / Login
+  - Profile management
+
+- **Lawyer Discovery**
+  - View list of lawyers
+  - Search and filter by specialization
+  - View lawyer profiles and ratings
+  - Receive lawyer recommendations (via cosine similarity)
+
+- **Issue Management**
+  - Create and submit legal issues
+  - Track issue status (active/inactive)
+  - View issue history
+
+- **Secure Messaging**
+  - Real-time chat between users and lawyers
+  - File sharing within conversations
+
+- **Agency Management**
+  - View and select from available legal agencies
+
+- **Multilingual Support** *(optional if implemented)*
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Flutter SDK (3.0 or later)
+- Dart SDK
+- Android Studio / Xcode / VS Code
+- Connection to the running backend (see: [Legal Assistance Web Repo](https://github.com/osama806/Legal-Assistance))
+
+### Installation
+
+```bash
+git clone https://github.com/YOUR_USERNAME/legal_assistance_flutter.git
+cd legal_assistance_flutter
+flutter pub get
+flutter run
