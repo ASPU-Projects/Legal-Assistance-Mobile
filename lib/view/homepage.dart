@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
 import 'package:legal_assistance_mobile/componant/myDrawer.dart';
-// import 'package:legal_assistance_mobile/componant/myDrawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

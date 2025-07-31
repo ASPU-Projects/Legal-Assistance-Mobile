@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:legal_assistance_mobile/settings.dart';
+import 'package:legal_assistance_mobile/view/settings.dart';
 import 'package:legal_assistance_mobile/view/chat/chatPage.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -12,8 +12,8 @@ class MyDrawer extends StatelessWidget {
       child: Column(
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text("username"),
-            accountEmail: Text("user email"),
+            accountName: Text("User Name"),
+            accountEmail: Text("user@gmail.com"),
           ),
           Expanded(
             child: ListView(

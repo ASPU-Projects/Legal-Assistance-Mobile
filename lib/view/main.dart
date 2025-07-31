@@ -5,6 +5,7 @@ import 'package:legal_assistance_mobile/controller/local/localeController.dart';
 import 'package:legal_assistance_mobile/view/auth/signin.dart';
 import 'package:legal_assistance_mobile/view/auth/signup.dart';
 import 'package:legal_assistance_mobile/view/chat/chatPage.dart';
+import 'package:legal_assistance_mobile/view/chat/conversation.dart';
 import 'package:legal_assistance_mobile/view/homepage.dart';
 
 void main(List<String> args) {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     Get.put(MyLocaleController());
     return GetMaterialApp(
       locale: Get.deviceLocale,
-      home: ChatPage(),
+      home: HomePage(),
       translations: MyLocale(),
     );
   }
