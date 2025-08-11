@@ -1,59 +1,193 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
-
 import 'package:legal_assistance_mobile/componant/myButton.dart';
-import 'package:legal_assistance_mobile/componant/myTextFeild.dart';
+import 'package:legal_assistance_mobile/controller/userController.dart';
 import 'package:legal_assistance_mobile/view/auth/signup.dart';
+import 'package:http/http.dart' as http;
 import 'package:legal_assistance_mobile/view/homepage.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   const SignIn({super.key});
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  final formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
+  String? role;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  void signin(
+    BuildContext context,
+    TextEditingController _emailcontroller,
+    TextEditingController _passwordcontroller,
+  ) async {
+    // String token = "";
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    String email = _emailcontroller.text;
+    String password = _passwordcontroller.text;
+
+    Future<http.Response> fetchData() async {
+      final response = await http.post(
+        Uri.parse(
+          "http://osamanaser2003-21041.portmap.host:21041/api/v1/auth/login",
+        ),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          // "Authorization": "Bearer ${token}"
+        },
+        body: jsonEncode({
+          // 'email': 'pjacobson@example.com',
+          // 'password': '123456789$Account',
+          'email': email,
+          'password': password,
+        }),
+      );
+
+      setState(() {
+        _isLoading = false;
+      });
+      return response;
+    }
+
+    // انتظر الـ response
+    final responseAPI = await fetchData();
+
+    // طباعة البيانات المفيدة
+
+    print("Status code: ${responseAPI.statusCode}");
+    print("Response body: ${responseAPI.body}");
+
+    // Store role
+    var decoded = jsonDecode(responseAPI.body);
+    role = decoded['data']['role'];
+    Get.find<UserController>().setRole(role!);
+
+    // بإمكانك تفحص الحالة مثلًا:
+    if (responseAPI.statusCode == 200) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Login successful"),
+          backgroundColor: Colors.green,
+        ),
+      );
+      // print("Login successful!");
+      Get.off(HomePage());
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Login failed, Check Your Email Or Password"),
+          backgroundColor: Colors.red,
+        ),
+      );
+      // print("Login failed!");
+    }
+    // Get.to(HomePage());
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "11".tr,
-                  style: TextStyle(fontSize: 50),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 60),
-                MyTextFeild(text: "12".tr, obscureText: false),
-                MyTextFeild(text: "13".tr, obscureText: true),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Don't have an accout "),
-                    InkWell(
-                      onTap: () {
-                        Get.to(SignUp());
-                      },
-                      child: Text(
-                        "Create one",
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
+        body: Form(
+          key: formKey,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "signin".tr,
+                    style: TextStyle(fontSize: 50),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 60),
 
-                MyButton(text: "11".tr, function: signin),
-              ],
+                  // MyTextFeild(text: "12".tr, obscureText: false),
+                  // MyTextFeild(text: "13".tr, obscureText: true),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "field_is_empty".tr;
+                        }
+                        if (!value.contains("@")) {
+                          return "enter_valid_email".tr;
+                        }
+                        return null;
+                      },
+                      controller: _emailController,
+                      decoration: InputDecoration(hintText: "email".tr),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "field_is_empty".tr;
+                        }
+                        if (value.length < 6) {
+                          return "less_then_6_characters".tr;
+                        }
+                        return null;
+                      },
+                      controller: _passwordController,
+                      decoration: InputDecoration(hintText: "password".tr),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("do_not_have_an_accout".tr),
+                      InkWell(
+                        onTap: () {
+                          Get.to(SignUp());
+                        },
+                        child: Text(
+                          "create_one".tr,
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+
+                  _isLoading
+                      ? CircularProgressIndicator()
+                      : MyButton(
+                        text: "signin".tr,
+                        function: () {
+                          if (formKey.currentState!.validate()) {
+                            setState(() {
+                              _isLoading = true;
+                            });
+                            signin(
+                              context,
+                              _emailController,
+                              _passwordController,
+                            );
+                          }
+                        },
+                      ),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
-}
-
-void signin() {
-  Get.to(HomePage());
 }

@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:legal_assistance_mobile/componant/chatList.dart';
 
-class ChatPage extends StatefulWidget {
-  const ChatPage({super.key});
+class Lawyers extends StatelessWidget {
+  const Lawyers({super.key});
 
-  @override
-  State<ChatPage> createState() => _ChatPageState();
-}
-
-class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("14".tr)),
+        appBar: AppBar(title: Text("Lawyers")),
         body: Center(
           child: Column(
             children: [
@@ -34,7 +28,6 @@ class _ChatPageState extends State<ChatPage> {
                   ),
                 ),
               ),
-              Expanded(child: Chatlist()),
             ],
           ),
         ),

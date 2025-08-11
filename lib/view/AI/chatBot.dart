@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Conversation extends StatefulWidget {
-  const Conversation({super.key});
+class Chatbot extends StatefulWidget {
+  const Chatbot({super.key});
 
   @override
-  State<Conversation> createState() => _ConversationState();
+  State<Chatbot> createState() => _ConversationState();
 }
 
-class _ConversationState extends State<Conversation> {
+class _ConversationState extends State<Chatbot> {
   final TextEditingController _messageController = TextEditingController();
   final List<Map<String, dynamic>> _messages =
       []; // { text: '...', isMe: true/false }

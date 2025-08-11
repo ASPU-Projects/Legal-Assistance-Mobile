@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
   final String text;
-
-  const MyButton({super.key, required this.text, this.function});
   final Function()? function;
+  const MyButton({super.key, required this.text, this.function});
+
   @override
   Widget build(BuildContext context) {
     return InkWell(

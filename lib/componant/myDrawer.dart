@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:legal_assistance_mobile/view/AI/docsAnlysis.dart';
+import 'package:legal_assistance_mobile/view/auth/lawyers.dart';
+import 'package:legal_assistance_mobile/view/profile.dart';
 import 'package:legal_assistance_mobile/view/settings.dart';
 import 'package:legal_assistance_mobile/view/chat/chatPage.dart';
 
@@ -21,7 +24,7 @@ class MyDrawer extends StatelessWidget {
                 InkWell(
                   child: ListTile(title: Text("2".tr)),
                   onTap: () {
-                    // Get.to(Profile());
+                    Get.to(Profile());
                   },
                 ),
                 InkWell(
@@ -37,11 +40,26 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
                 InkWell(
+                  child: ListTile(title: Text("Lawyer")),
+                  onTap: () {
+                    Get.to(Lawyers());
+                  },
+                ),
+
+                InkWell(
                   child: ListTile(title: Text("15".tr)),
                   onTap: () {
                     // Get.to(Settings());
                   },
                 ),
+
+                InkWell(
+                  onTap: () {
+                    Get.to(Docsanlysis());
+                  },
+                  child: ListTile(title: Text("16".tr)),
+                ),
+                ListTile(title: Text("17".tr)),
                 ListTile(title: Text("4".tr)),
               ],
             ),

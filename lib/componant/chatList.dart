@@ -8,7 +8,7 @@ class Chatlist extends ListView {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 13,
+      itemCount: 10,
       itemBuilder:
           (context, i) => InkWell(
             onTap: () {
@@ -19,7 +19,7 @@ class Chatlist extends ListView {
               child: ListTile(
                 title: Text("User Name"),
                 leading: CircleAvatar(child: Icon(Icons.person)),
-                subtitle: Text("user@gmail.com"),
+                subtitle: Text("+963 945627891"),
               ),
             ),
           ),
