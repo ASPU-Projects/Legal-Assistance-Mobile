@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:legal_assistance_mobile/componant/myDrawer.dart';
-import 'package:legal_assistance_mobile/controller/userController.dart';
+import 'package:legal_assistance_mobile/componant/mydrawer.dart';
+import 'package:legal_assistance_mobile/controller/usercontroller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String role = Get.find<UserController>().role.value;
+  String role = Get.find<SignInController>().role.value;
 
   @override
   Widget build(BuildContext context) {

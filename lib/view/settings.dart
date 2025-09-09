@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:legal_assistance_mobile/controller/local/localeController.dart';
+import 'package:legal_assistance_mobile/controller/local/localecontroller.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -18,18 +18,18 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("3".tr)),
+        appBar: AppBar(title: Text("settings".tr)),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("5".tr),
+                Text("theme".tr),
                 SizedBox(width: 50),
                 Row(
                   children: [
-                    Text("6".tr),
+                    Text("light".tr),
                     Switch(
                       value: themeSwitchValue,
                       onChanged: (value) {
@@ -38,7 +38,7 @@ class _SettingsState extends State<Settings> {
                         });
                       },
                     ),
-                    Text("7".tr),
+                    Text("dark".tr),
                   ],
                 ),
               ],
@@ -46,25 +46,25 @@ class _SettingsState extends State<Settings> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("8".tr),
+                Text("language".tr),
                 SizedBox(width: 50),
                 Row(
                   children: [
-                    Text("10".tr),
+                    Text("arabic".tr),
                     Switch(
                       value: languageSwitchValue,
                       onChanged: (value) {
                         setState(() {
                           languageSwitchValue = value;
                           if (value == false) {
-                            controller.changeLanguage("en");
-                          } else {
                             controller.changeLanguage("ar");
+                          } else {
+                            controller.changeLanguage("en");
                           }
                         });
                       },
                     ),
-                    Text("9".tr),
+                    Text("english".tr),
                   ],
                 ),
               ],

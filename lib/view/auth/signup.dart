@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:legal_assistance_mobile/componant/myTextFeild.dart';
+import 'package:legal_assistance_mobile/componant/mytextfeild.dart';
 import 'package:legal_assistance_mobile/view/homepage.dart';
 
 class SignUp extends StatefulWidget {

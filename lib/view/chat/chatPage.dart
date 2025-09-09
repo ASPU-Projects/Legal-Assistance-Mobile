@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:legal_assistance_mobile/componant/chatList.dart';
+import 'package:legal_assistance_mobile/componant/chatlist.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -14,7 +14,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("14".tr)),
+        appBar: AppBar(title: Text("chat".tr)),
         body: Center(
           child: Column(
             children: [
@@ -24,7 +24,7 @@ class _ChatPageState extends State<ChatPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText: "18".tr,
+                      hintText: "search".tr,
                       suffix: IconButton(
                         onPressed: () {},
                         icon: Icon(Icons.search, color: Colors.black),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MyButton extends StatelessWidget {
   final String text;
   final Function()? function;
-  const MyButton({super.key, required this.text, this.function});
+  const MyButton({super.key, required this.text, required this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +13,7 @@ class MyButton extends StatelessWidget {
         width: 120,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
+          color: Colors.amber,
           border: Border.all(),
           borderRadius: BorderRadius.circular(20),
         ),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:legal_assistance_mobile/controller/local/locale.dart';
-import 'package:legal_assistance_mobile/controller/local/localeController.dart';
-import 'package:legal_assistance_mobile/controller/userController.dart';
-import 'package:legal_assistance_mobile/view/homepage.dart';
+import 'package:legal_assistance_mobile/controller/local/localecontroller.dart';
+import 'package:legal_assistance_mobile/controller/usercontroller.dart';
+import 'package:legal_assistance_mobile/view/auth/signin.dart';
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
-  final userController = Get.put(UserController());
+  final userController = Get.put(SignInController());
   await userController.getRole();
   runApp(MyApp());
 }
@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final ThemeData mytheme = ThemeData(
-    primaryColor: Colors.amber[200],
-    appBarTheme: AppBarTheme(color: Colors.amber[200]),
+    primaryColor: Color(0xffffcf40),
+    appBarTheme: AppBarTheme(color: Color(0xffffcf40)),
   );
 
   @override
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: mytheme,
       locale: Locale('ar'),
-      home: HomePage(),
+      home: SignIn(),
       translations: MyLocale(),
     );
   }

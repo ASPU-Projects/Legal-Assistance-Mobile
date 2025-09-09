@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:legal_assistance_mobile/componant/myButton.dart';
-import 'package:legal_assistance_mobile/controller/userController.dart';
+import 'package:legal_assistance_mobile/componant/mybutton.dart';
+import 'package:legal_assistance_mobile/controller/usercontroller.dart';
 import 'package:legal_assistance_mobile/view/auth/signup.dart';
 import 'package:http/http.dart' as http;
 import 'package:legal_assistance_mobile/view/homepage.dart';
@@ -17,7 +17,8 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final formKey = GlobalKey<FormState>();
   bool _isLoading = false;
-  String? role;
+  String? role, userName, userEmail, avatar, token, id;
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -45,12 +46,7 @@ class _SignInState extends State<SignIn> {
           "Accept": "application/json",
           // "Authorization": "Bearer ${token}"
         },
-        body: jsonEncode({
-          // 'email': 'pjacobson@example.com',
-          // 'password': '123456789$Account',
-          'email': email,
-          'password': password,
-        }),
+        body: jsonEncode({'email': email, 'password': password}),
       );
 
       setState(() {
@@ -69,8 +65,26 @@ class _SignInState extends State<SignIn> {
 
     // Store role
     var decoded = jsonDecode(responseAPI.body);
+
+    id = decoded['data']['id'].toString();
     role = decoded['data']['role'];
-    Get.find<UserController>().setRole(role!);
+    userName = decoded['data']['name'];
+    userEmail = decoded['data']['email'];
+    avatar = decoded['data']['avatar'];
+    token = decoded['access_token'];
+
+    print(role);
+    print(userName);
+    print(userEmail);
+    print(avatar);
+    print(token);
+
+    Get.find<SignInController>().setId(id ?? "");
+    Get.find<SignInController>().setRole(role ?? "");
+    Get.find<SignInController>().setName(userName ?? "");
+    Get.find<SignInController>().setEmail(userEmail ?? "");
+    Get.find<SignInController>().setAvatar(avatar ?? "");
+    Get.find<SignInController>().setToken(token ?? "");
 
     // بإمكانك تفحص الحالة مثلًا:
     if (responseAPI.statusCode == 200) {
@@ -111,9 +125,6 @@ class _SignInState extends State<SignIn> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 60),
-
-                  // MyTextFeild(text: "12".tr, obscureText: false),
-                  // MyTextFeild(text: "13".tr, obscureText: true),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     child: TextFormField(
@@ -133,6 +144,7 @@ class _SignInState extends State<SignIn> {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     child: TextFormField(
+                      obscureText: true,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "field_is_empty".tr;
