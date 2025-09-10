@@ -47,8 +47,8 @@ class _LawyersState extends State<Lawyers> {
         },
       );
 
-      print("Status code: ${response.statusCode}");
-      print("Response body: ${response.body}");
+      // print("Status code: ${response.statusCode}");
+      // print("Response body: ${response.body}");
 
       final data = jsonDecode(response.body);
 
@@ -60,7 +60,7 @@ class _LawyersState extends State<Lawyers> {
         });
       } else {
         setState(() {
-          _error = "Failed to load lawyer. Status: ${response.statusCode}";
+          _error = "Failed_to_load_lawyer".tr;
           _isLoading = false;
         });
       }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyTextFeild extends StatelessWidget {
-  MyTextFeild({
+  const MyTextFeild({
     super.key,
     required this.text,
     required this.obscureText,

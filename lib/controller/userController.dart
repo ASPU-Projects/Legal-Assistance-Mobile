@@ -9,6 +9,15 @@ class SignInController extends GetxController {
   RxString avatar = "".obs;
   RxString token = "".obs;
 
+  void clearUserData() {
+    id.value = '';
+    role.value = '';
+    name.value = '';
+    email.value = '';
+    avatar.value = '';
+    token.value = '';
+  }
+
   // Role
   Future<void> setRole(String newRole) async {
     role.value = newRole;

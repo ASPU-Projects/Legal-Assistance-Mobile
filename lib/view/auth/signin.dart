@@ -24,8 +24,8 @@ class _SignInState extends State<SignIn> {
 
   void signin(
     BuildContext context,
-    TextEditingController _emailcontroller,
-    TextEditingController _passwordcontroller,
+    TextEditingController emailcontroller,
+    TextEditingController passwordcontroller,
   ) async {
     // String token = "";
 
@@ -33,8 +33,8 @@ class _SignInState extends State<SignIn> {
       _isLoading = true;
     });
 
-    String email = _emailcontroller.text;
-    String password = _passwordcontroller.text;
+    String email = emailcontroller.text;
+    String password = passwordcontroller.text;
 
     Future<http.Response> fetchData() async {
       final response = await http.post(
@@ -44,7 +44,6 @@ class _SignInState extends State<SignIn> {
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          // "Authorization": "Bearer ${token}"
         },
         body: jsonEncode({'email': email, 'password': password}),
       );
@@ -60,8 +59,8 @@ class _SignInState extends State<SignIn> {
 
     // طباعة البيانات المفيدة
 
-    print("Status code: ${responseAPI.statusCode}");
-    print("Response body: ${responseAPI.body}");
+    // print("Status code: ${responseAPI.statusCode}");
+    // print("Response body: ${responseAPI.body}");
 
     // Store role
     var decoded = jsonDecode(responseAPI.body);
@@ -73,11 +72,11 @@ class _SignInState extends State<SignIn> {
     avatar = decoded['data']['avatar'];
     token = decoded['access_token'];
 
-    print(role);
-    print(userName);
-    print(userEmail);
-    print(avatar);
-    print(token);
+    // print(role);
+    // print(userName);
+    // print(userEmail);
+    // print(avatar);
+    // print(token);
 
     Get.find<SignInController>().setId(id ?? "");
     Get.find<SignInController>().setRole(role ?? "");
@@ -90,7 +89,7 @@ class _SignInState extends State<SignIn> {
     if (responseAPI.statusCode == 200) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("Login successful"),
+          content: Text("Login_successful".tr),
           backgroundColor: Colors.green,
         ),
       );
@@ -99,7 +98,7 @@ class _SignInState extends State<SignIn> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("Login failed, Check Your Email Or Password"),
+          content: Text("Login_failed".tr),
           backgroundColor: Colors.red,
         ),
       );
@@ -128,6 +127,7 @@ class _SignInState extends State<SignIn> {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "field_is_empty".tr;
@@ -144,6 +144,7 @@ class _SignInState extends State<SignIn> {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     child: TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
                       validator: (value) {
                         if (value!.isEmpty) {
